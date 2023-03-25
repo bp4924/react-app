@@ -1,4 +1,4 @@
-import { MouseEvent } from "react";
+import { useState } from "react";
 
 function ListGroup() {
   let items = [
@@ -9,10 +9,8 @@ function ListGroup() {
     "Everybody talkin about Pop Muzik",
   ];
 
-  //items = ["New York", "London"]; //testing the less than 5 case for conditional components
-
-  // event handler
-  const handleClick = (event: MouseEvent) => console.log(event);
+  // hook - allows us to access built in features in react
+  const [selectedIndex, setSelectedIndex] = useState(-1); // useState returns an array. deconstruct as shown
 
   const numberOfItemsMessage =
     items.length < 5 ? <p>Only {items.length} items found</p> : null; //       {/* conditional constant using ternary operator, rendered in the return statement */}
@@ -24,8 +22,16 @@ function ListGroup() {
       {numberOfItemsMessage}
       <ul className="list-group">
         {/* Only html elements can be returned. use curly braces to wrap js commands */}
-        {items.map((item) => (
-          <li className="list-group-item" key={item} onClick={handleClick}>
+        {items.map((item, index) => (
+          <li
+            className={
+              selectedIndex === index
+                ? "list-group-item active"
+                : "list-group-item"
+            }
+            key={item}
+            onClick={() => setSelectedIndex(index)} //sets selectedIndex to current index for highlighting the component
+          >
             {item}
           </li>
         ))}
