@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-function ListGroup() {
-  let items = [
-    "New York",
-    "London",
-    "Paris",
-    "Munich",
-    "Everybody talkin about Pop Muzik",
-  ];
+interface Props {
+  // typescript feature defining types of an object
+  items: string[];
+  heading: string;
+}
+
+function ListGroup({ items, heading }: Props) {
+  // destructure to allow access to these props throughout the function
 
   // hook - allows us to access built in features in react
   const [selectedIndex, setSelectedIndex] = useState(-1); // useState returns an array. deconstruct as shown
@@ -18,7 +18,7 @@ function ListGroup() {
   return (
     <>
       {/* use <> for the fragment tag in the return.This tells react to use a Fragmant to wrap all the children*/}
-      <h1>List of Cities</h1>
+      <h1>{heading}</h1>
       {numberOfItemsMessage}
       <ul className="list-group">
         {/* Only html elements can be returned. use curly braces to wrap js commands */}
