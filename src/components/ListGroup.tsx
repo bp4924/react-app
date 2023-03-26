@@ -4,9 +4,10 @@ interface Props {
   // typescript feature defining types of an object
   items: string[];
   heading: string;
+  onSelectItem: (item: string) => void;
 }
 
-function ListGroup({ items, heading }: Props) {
+function ListGroup({ items, heading, onSelectItem }: Props) {
   // destructure to allow access to these props throughout the function
 
   // hook - allows us to access built in features in react
@@ -30,7 +31,10 @@ function ListGroup({ items, heading }: Props) {
                 : "list-group-item"
             }
             key={item}
-            onClick={() => setSelectedIndex(index)} //sets selectedIndex to current index for highlighting the component
+            onClick={() => {
+              setSelectedIndex(index); //change state of selected index
+              onSelectItem(item);
+            }}
           >
             {item}
           </li>
