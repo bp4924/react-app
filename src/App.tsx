@@ -1,4 +1,5 @@
 import Alert from "./components/Alert";
+import Button from "./components/Button";
 import ListGroup from "./components/ListGroup";
 
 function App() {
@@ -21,6 +22,9 @@ function App() {
         {text} <span className="fw-bolder fst-italic">This sort of works</span>{" "}
         {text}
       </Alert>
+      <Button color="primary" onClick={() => console.log("Clicked")}>
+        Click Me
+      </Button>
     </div>
   ); // using self-closing syntax
 }
